@@ -11,7 +11,7 @@ if ($conn->connect_error) {
     die("Erro na conexão: " . $conn->connect_error);
 }
 
-$sql = 'SELECT id, nome, email, senha FROM usuarios';
+$sql = 'SELECT id, nome, qualidade,quantidade,raridade  FROM usuarios';
 $resultado = $conn->query($sql);
 ?>
 
@@ -48,8 +48,8 @@ $resultado = $conn->query($sql);
 <body>
     
 <div class="content">
-    <h2>Usuários</h2>
-    <a href="cadastro.php">Cadastrar usuário</a>
+    <h2>Ash Ketchup</h2>
+    <a href="cadastro.php">Cadastrar Carta</a>
 </div>
 
 <br><br>
@@ -58,28 +58,31 @@ $resultado = $conn->query($sql);
     <tr>
         <th>ID</th>
         <th>Nome</th>
-        <th>Email</th>
-        <th>Ações</th>
+        <th>Quantidade</th>
+        <th>Qualidade</th>
+        <th>Raridade</th>
     </tr>
 
     <?php 
     // Verifica se a consulta foi bem-sucedida e se existem registros
     if ($resultado && $resultado->num_rows > 0) {
-        foreach ($resultado as $usuario) { 
+        while($usuario = $resultado->fetch_assoc()) { 
     ?>
             <tr>
                 <td><?= $usuario['id'] ?></td>
                 <td><?= $usuario['nome'] ?></td>
-                <td><?= $usuario['email'] ?></td>
+                <td><?= $usuario['quantidade'] ?></td>
+                <td><?= $usuario['qualidade']?></td>
+                <td><?= $usuario['raridade']?></td>
                 <td>
                     <a href="editar.php?id=<?= $usuario['id'] ?>">Editar</a>
-                    <a href="delete.php?id=<?= $usuario['id'] ?>">Excluir</a>
+                    <a href="delete.php?id=<?= $usuario['id'] ?>" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</a>
                 </td>
             </tr>
     <?php 
         } 
     } else {
-        echo "<tr><td colspan='4'>Nenhum usuário cadastrado ou tabela não encontrada.</td></tr>";
+        echo "<tr><td colspan='6'>Nenhum usuário cadastrado ou tabela não encontrada.</td></tr>";
     } 
     ?>
 </table>
