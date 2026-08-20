@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/08/2026 às 22:32
+-- Tempo de geração: 20/08/2026 às 23:57
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -29,20 +29,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
-  `nome` varchar(150) NOT NULL,
-  `qualidade` varchar(120) NOT NULL,
-  `quantidade` int(100) NOT NULL DEFAULT 0,
-  `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
-  `raridade` varchar(100) NOT NULL
+  `nome` varchar(100) NOT NULL,
+  `qualidade` varchar(50) NOT NULL,
+  `quantidade` int(11) NOT NULL,
+  `raridade` varchar(50) NOT NULL,
+  `preco` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `qualidade`, `quantidade`, `criado_em`, `raridade`) VALUES
-(1, 'pikachu', 'nova', 38, '2026-08-19 19:30:46', 'Rara Secreta (SR)'),
-(2, 'Exu Caveira', 'nova', 1, '2026-08-19 20:18:59', 'Ilustração Rara');
+INSERT INTO `usuarios` (`id`, `nome`, `qualidade`, `quantidade`, `raridade`, `preco`) VALUES
+(2, 'Pikachu', 'Otima', 10, 'Círculo', 1.50);
 
 --
 -- Índices para tabelas despejadas
@@ -62,7 +61,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
